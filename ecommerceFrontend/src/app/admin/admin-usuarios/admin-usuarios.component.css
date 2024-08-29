@@ -1,0 +1,88 @@
+/* Estilo del contenedor principal */
+.container.main-content {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del encabezado */
+h1 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+/* Estilo del buscador */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 20px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+/* Estilo de la tabla */
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilo de los botones en la tabla */
+.btn {
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Añadir un poco de espacio en la parte superior de la tabla */
+.table mt-3 {
+  margin-top: 30px;
+}

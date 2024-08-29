@@ -1,0 +1,42 @@
+<!-- Buscador -->
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Buscar productos" [(ngModel)]="filtro">
+</div>
+
+<!-- Lista de productos filtrados -->
+<div class="contenedor-productos">
+  <div *ngFor="let producto of productos | filtroProducto: filtro : productoIdResaltado" [id]="'producto-' + producto.id" class="card">
+    <div class="image_container">
+      <img [src]="'http://localhost:8000/storage/' + producto.foto" alt="{{ producto.nombre }}" class="image">
+    </div>
+    <div class="title">
+      <span>{{ producto.nombre }}</span>
+    </div>
+    <div class="price">
+      <span>{{ producto.precio | currency }}</span>
+    </div>
+
+    <div class="actions">
+      <!-- Botón de 'Ver más' -->
+      <button class="cart-button" (click)="abrirVentanaFlotante(producto)">
+        <span>Ver más</span>
+      </button>
+      <!-- Botón de 'Añadir al carrito' -->
+      <button class="cart-button" (click)="abrirVentanaCantidad(producto)">
+        <span>Añadir al carrito</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal flotante -->
+<div id="modalProducto" class="modal" [ngClass]="{'show': mostrarModal}">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarVentanaFlotante()">&times;</span>
+    <h2>{{ productoSeleccionado?.nombre }}</h2>
+    <img [src]="'http://localhost:8000/storage/' + productoSeleccionado?.foto" alt="{{ productoSeleccionado?.nombre }}" class="image">
+    <p><strong>Descripción:</strong> {{ productoSeleccionado?.descripcion }}</p>
+    <p><strong>Precio:</strong> {{ productoSeleccionado?.precio | currency }}</p>
+    <p><strong>Cantidad disponible:</strong> {{ productoSeleccionado?.cantidad }}</p>
+  </div>
+</div>

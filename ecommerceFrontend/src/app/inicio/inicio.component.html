@@ -1,0 +1,304 @@
+<head>
+  <style>
+    /* From Uiverse.io by cssbuttons-io */ 
+button {
+ appearance: button;
+ background-color: #1899D6;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ box-sizing: border-box;
+ color: #FFFFFF;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 15px;
+ font-weight: 700;
+ letter-spacing: .8px;
+ line-height: 20px;
+ margin: 0;
+ outline: none;
+ overflow: visible;
+ padding: 13px 19px;
+ text-align: center;
+ text-transform: uppercase;
+ touch-action: manipulation;
+ transform: translateZ(0);
+ transition: filter .2s;
+ user-select: none;
+ -webkit-user-select: none;
+ vertical-align: middle;
+ white-space: nowrap;
+}
+
+button:after {
+ background-clip: padding-box;
+ background-color: #1CB0F6;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ bottom: -4px;
+ content: "";
+ left: 0;
+ position: absolute;
+ right: 0;
+ top: 0;
+ z-index: -1;
+}
+
+button:main, button:focus {
+ user-select: auto;
+}
+
+button:hover:not(:disabled) {
+ filter: brightness(1.1);
+}
+
+button:disabled {
+ cursor: auto;
+}
+
+button:active:after {
+ border-width: 0 0 0px;
+}
+
+button:active {
+ padding-bottom: 10px;
+}.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+/* Estilos generales para modal */
+/* Estilo general para la ventana flotante (modal) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contenedor principal del formulario de login/register */
+.login-register-container {
+  background: white;
+  border-radius: 8px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+/* Contenedor de los campos de entrada */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+/* Estilo para cada campo de entrada (input) */
+.input-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Estilo para los campos de entrada */
+.input-is {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-is:focus {
+  border-color: #007bff;
+}
+
+/* Estilo para las etiquetas span */
+.input-content span {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+/* Botón de enviar */
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:active {
+  background-color: #004080;
+}
+
+
+
+  </style>
+</head>
+
+
+<body class="bg-purple">
+    
+  <div class="stars">
+      <div class="custom-navbar">
+          <div class="brand-logo">
+              <img src="" width="80px">
+          </div>
+          <div class="navbar-links">
+              <ul>
+                <div class="row">
+                  
+                  <div class="col-12 text-center" style="    margin-top: 15px;">
+                    <button (click)="toggleLogin()" class="btn btn-primary m-2">Iniciar Sesión</button>
+                    <button (click)="toggleRegister()" class="btn btn-secondary m-2">Registrarse</button>
+                  </div>
+                </div>
+
+              <!-- Ventana flotante para iniciar sesión -->
+<div *ngIf="showLogin" (click)="closeModal($event)" class="modal-overlay">
+  <form (click)="$event.stopPropagation()" (submit)="onLoginSubmit()" class="login-register-container">
+    <div class="input-container">
+      <div class="input-content">
+        <div class="input-dist">
+          <div class="input-type">
+            <label>
+              <input class="input-is" type="email" required placeholder="Correo Electronico" id="loginEmail" [(ngModel)]="loginData.email" name="email" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="password" required placeholder="Contraseña" id="loginPassword" [(ngModel)]="loginData.password" name="password" />
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button style="border-radius: 20px;" class="submit-button">Iniciar Sesión</button>
+  </form>
+</div>
+
+<!-- Ventana flotante para registro -->
+<!-- Ventana flotante para registro -->
+<div *ngIf="showRegister" (click)="closeModal($event)" class="modal-overlay">
+  <form (click)="$event.stopPropagation()" (submit)="onRegisterSubmit()" class="login-register-container">
+    <div class="input-container">
+      <div class="input-content">
+        <div class="input-dist">
+          <div class="input-type">
+            <label>
+              <input class="input-is" type="text" required placeholder="Nombre" [(ngModel)]="registerData.nombre" name="nombre" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="text" placeholder="Dirección" [(ngModel)]="registerData.direccion" name="direccion" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="text" placeholder="Teléfono" [(ngModel)]="registerData.telefono" name="telefono" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="text" placeholder="Celular" [(ngModel)]="registerData.celular" name="celular" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="email" required placeholder="Correo Electrónico" [(ngModel)]="registerData.email" name="email" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="password" required placeholder="Contraseña" [(ngModel)]="registerData.password" name="password" />
+              <span></span>
+            </label>
+            <label>
+              <input class="input-is" type="password" required placeholder="Confirmar Contraseña" [(ngModel)]="registerData.password_confirmation" name="password_confirmation" />
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="submit-button" style="border-radius: 20px;">Registrarse</button>
+  </form>
+</div>
+
+              </ul>
+          </div>
+      </div>
+      <div class="central-body">
+        <h1 style="font-size: 80px; color: white;">GPTRONICS</h1>
+        <P style="font-size: 30px; color: white;">Ofertas increíbles en productos de electrónica y Beterwere</P>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 100px;">
+        <button class="btn btn-secondary m-2" [routerLink]="['/electronica']">Electronica</button>
+          <button class="btn btn-secondary m-2" [routerLink]="['/beterwere']">Betterware</button>
+        </div> 
+      </div>
+  </div>
+
+</body>
+  <!-- Sección de ofertas -->
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <h2>Ofertas</h2>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4" *ngFor="let oferta of ofertas">
+        <div class="card">
+          <div class="image_container">
+            <img [src]="'http://localhost:8000/storage/' + oferta.foto" alt="Imagen del producto" class="image">
+          </div>
+          <div class="card-body">
+            <h5 class="title">{{ oferta.nombre }}</h5>
+            <p class="size">{{ oferta.descripcion }}</p>
+            <div class="action">
+              <p class="price">{{ oferta.precio | currency }}</p>
+            </div>
+            <a (click)="verOferta(oferta)" class="cart-button">Ver Oferta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="mt-5">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2024 GPETRONIC. Todos los derechos reservados.</p>
+        <p>Contacto: "contacto&#64;gpetronic.com" | Tel: +123 456 7890</p>
+      </div>
+    </div>
+  </footer>

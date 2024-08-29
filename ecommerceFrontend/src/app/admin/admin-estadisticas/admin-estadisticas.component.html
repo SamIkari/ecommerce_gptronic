@@ -1,0 +1,25 @@
+ <div class="container" style="    margin-top: 100px;">
+  <h1>Estadísticas de Ventas por Categoría</h1>
+
+  <!-- Botones para filtrar por día o semana -->
+  <div class="btn-group mb-3">
+    <button (click)="actualizarFiltro('dia')" class="btn btn-primary" [class.active]="filtro === 'dia'">Ventas Diarias</button>
+    <button (click)="actualizarFiltro('semana')" class="btn btn-secondary" [class.active]="filtro === 'semana'">Ventas Semanales</button>
+  </div>
+
+  <!-- Tabla de estadísticas -->
+  <table>
+    <thead>
+      <tr>
+        <th>Categoría</th>
+        <th>Ventas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estadistica of estadisticas">
+        <td>{{ estadistica.categoria }}</td>
+        <td>{{ estadistica.ventas }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
